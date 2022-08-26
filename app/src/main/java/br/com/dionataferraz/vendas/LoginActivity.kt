@@ -1,5 +1,6 @@
 package br.com.dionataferraz.vendas
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -20,10 +21,12 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btLogin.setOnClickListener {
             viewModel.login(null, null)
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
         }
 
         viewModel.shouldShowError.observe(this) { shouldShow ->
-            if (shouldShow){
+            if (shouldShow) {
                 Toast.makeText(
                     this,
                     "Deu ruim",
