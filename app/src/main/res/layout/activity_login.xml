@@ -8,15 +8,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingHorizontal="16dp"
         tools:context=".LoginActivity">
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_fundatec"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/ti_email"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
             android:hint="@string/email"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@+id/ti_password"
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -33,9 +42,9 @@
             android:id="@+id/ti_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
             android:hint="@string/password"
+            app:layout_constraintBottom_toTopOf="@+id/bt_login"
             app:layout_constraintTop_toBottomOf="@+id/ti_email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -48,12 +57,40 @@
 
         <Button
             android:id="@+id/bt_login"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@color/purple_700"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/bt_register"
+            app:layout_constraintTop_toBottomOf="@+id/ti_password" />
+
+        <TextView
+            android:id="@+id/tv_new_here"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/login"
-            app:layout_constraintEnd_toEndOf="@+id/ti_password"
-            app:layout_constraintTop_toBottomOf="@+id/ti_password" />
+            android:layout_marginBottom="24dp"
+            android:text="@string/new_here"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bt_register"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/bt_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/register"
+            android:textColor="@color/purple_700"
+            android:textSize="@dimen/text_size_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_new_here" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
