@@ -13,7 +13,7 @@ class LoginDataSource {
     suspend fun login(email:String, password:String):Result<UserResponse, ErrorModel>{
         return withContext(Dispatchers.IO) {
             try {
-                val user = service.login(email, password)
+                val user = service.login(email = email,password = password)
                 Result.Success(user)
             } catch (exception:Exception) {
                 Result.Error(ErrorModel)
