@@ -25,6 +25,11 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.registerText.setOnClickListener {
+            val intent  = Intent(this, AccountActivity::class.java)
+            startActivity(intent)
+        }
+
         viewModel.shouldShowError.observe(this) { shouldShow ->
             if (shouldShow){
                 Toast.makeText(

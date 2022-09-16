@@ -8,13 +8,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:paddingHorizontal="16dp"
         tools:context=".LoginActivity">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
             android:hint="@string/email"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -33,7 +33,6 @@
             android:id="@+id/ti_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
             android:hint="@string/password"
             app:layout_constraintTop_toBottomOf="@+id/ti_email">
@@ -48,12 +47,26 @@
 
         <Button
             android:id="@+id/bt_login"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="@string/login"
             app:layout_constraintEnd_toEndOf="@+id/ti_password"
+            app:layout_constraintStart_toStartOf="@+id/ti_password"
             app:layout_constraintTop_toBottomOf="@+id/ti_password" />
+
+        <TextView
+            android:id="@+id/register_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/register_now"
+            app:layout_constraintStart_toStartOf="@id/ti_password"
+            app:layout_constraintEnd_toEndOf="@id/ti_password"
+            android:textSize="15sp"
+            android:textColor="@color/design_default_color_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
