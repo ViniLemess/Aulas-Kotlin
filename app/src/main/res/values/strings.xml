@@ -17,4 +17,5 @@
     <string name="home_next_invoice">Próxima fatura</string>
     <string name="new_transaction">ADD TRANSACTION</string>
     <string name="transactions">Transactions</string>
+    <string name="transactions_str">Transações</string>
 </resources>
