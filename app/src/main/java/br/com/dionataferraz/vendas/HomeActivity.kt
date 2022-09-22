@@ -1,7 +1,7 @@
 package br.com.dionataferraz.vendas
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import br.com.dionataferraz.vendas.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
