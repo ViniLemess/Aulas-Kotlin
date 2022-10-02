@@ -1,6 +1,6 @@
-package br.com.dionataferraz.vendas.login.data.remote
+package br.com.dionataferraz.vendas.data.remote
 
-import br.com.dionataferraz.vendas.login.data.response.UserResponse
+import br.com.dionataferraz.vendas.data.response.UserResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception

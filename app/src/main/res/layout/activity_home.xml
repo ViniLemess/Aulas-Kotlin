@@ -12,7 +12,7 @@
             android:id="@+id/v_header"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@color/purple_700"
+            android:background="@color/black_700"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/home_bank_balance"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/black_700"
             android:textSize="@dimen/text_size_16"
             app:layout_constraintEnd_toStartOf="@+id/v_separator"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/home_bank_balance"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/black_700"
             android:textSize="@dimen/text_size_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/v_separator"
@@ -92,11 +92,11 @@
             app:layout_constraintTop_toBottomOf="@id/tv_credit_card" />
 
         <Button
-            android:id="@+id/buy_button"
+            android:id="@+id/transaction_rg_button"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="40dp"
-            android:background="@color/purple_700"
+            android:background="@color/black_700"
             android:text="@string/home_new_transaction"
             android:textAllCaps="false"
             android:textSize="@dimen/text_size_14"
@@ -105,11 +105,11 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_credit_card_place_holder" />
 
         <Button
-            android:id="@+id/transactions_button"
+            android:id="@+id/transaction_button"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginTop="40dp"
-            android:background="@color/purple_700"
+            android:background="@color/black_700"
             android:text="@string/transactions"
             android:textAllCaps="false"
             android:textSize="@dimen/text_size_14"

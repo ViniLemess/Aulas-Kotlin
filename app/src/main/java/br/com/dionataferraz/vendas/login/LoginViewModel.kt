@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.dionataferraz.vendas.login.usecase.GetLoginUsecase
+import br.com.dionataferraz.vendas.usecase.GetLoginUsecase
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {

@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas.login.data.remote
+package br.com.dionataferraz.vendas.data.remote
 
 import br.com.dionataferraz.vendas.BuildConfig
 import com.squareup.moshi.Moshi
@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitNetworkClient {
 
-    fun createNetworkClient(baseUrl: String = BuildConfig.HTTP_SERVER) =
+    fun createNetworkClient(baseUrl: String = BuildConfig.HTTP_SERVER): Retrofit =
         retrofitClient(
             baseUrl = baseUrl,
             httpClient = httpClient(),

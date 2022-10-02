@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.dionataferraz.vendas.App
 import br.com.dionataferraz.vendas.HomeActivity
 import br.com.dionataferraz.vendas.databinding.ActivityLoginBinding
-import br.com.dionataferraz.vendas.login.data.local.UserEntity
-import br.com.dionataferraz.vendas.login.data.local.VendasDatabase
+import br.com.dionataferraz.vendas.data.local.SalesDatabase
+import br.com.dionataferraz.vendas.data.local.entity.UserEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,8 +19,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
 
-    private val database: VendasDatabase by lazy {
-        VendasDatabase.getInstance(this)
+    private val database: SalesDatabase by lazy {
+        SalesDatabase.getInstance(App.context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +36,6 @@ class LoginActivity : AppCompatActivity() {
                 email = binding.etEmail.text.toString(),
                 password = binding.etPassword.text.toString()
             )
-
         }
 
         viewModel.shouldShowHome.observe(this) { shouldOpen ->
@@ -57,14 +57,14 @@ class LoginActivity : AppCompatActivity() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            database.DAO().insertUser(UserEntity(
-                id = 3,
-                name = "Kauan",
-                email = "Kauanzito@outlook.com",
-                password = "kauanzera123"
-            ))
-            val users = database.DAO().findUsers()
-            Log.e("DAO", users.toString())
+            database.userDAO().insertUser(
+                UserEntity(
+                name = "Jose",
+                email = "jose@outlook.com",
+                password = "josesito321")
+            )
+            val users = database.userDAO().findUsers()
+            Log.e("userDAO", users.toString())
         }
     }
 }
