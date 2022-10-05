@@ -18,7 +18,7 @@ class App : Application() {
 
 fun Double.toCurrency(): String {
     if (this == 0.0) {
-        return "$0,00"
+        return "$0.00"
     }
     val format = DecimalFormat("$#,###.00")
     format.isDecimalSeparatorAlwaysShown = false

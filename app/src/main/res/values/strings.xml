@@ -9,14 +9,14 @@
     <string name="man">Male</string>
     <string name="woman">Female</string>
     <string name="other">Non Binary</string>
-    <string name="save">Salvar</string>
+    <string name="save">Save</string>
     <string name="home_hello">Hello!</string>
     <string name="home_new_transaction">New Transaction</string>
-    <string name="home_bank_balance">$ 0.00</string>
+    <string name="home_bank_balance">$0.00</string>
     <string name="home_balance_available">Current Balance</string>
     <string name="home_next_invoice">Next Bill</string>
     <string name="new_transaction">ADD TRANSACTION</string>
-    <string name="transactions">Transactions</string>
+    <string name="transactions">TRANSACTIONS</string>
     <string name="transactions_str">Transactions</string>
     <string name="submit">Submit</string>
     <string name="deposit">Deposit</string>
