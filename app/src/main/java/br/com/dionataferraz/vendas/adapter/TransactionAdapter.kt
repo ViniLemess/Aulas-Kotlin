@@ -47,11 +47,11 @@ class TransactionViewHolder(
 
         when (transaction.type) {
             TransactionType.WITHDRAW -> {
-                binding.transactionPrice.text = "- R$ ${Math.abs(transaction.amount).toCurrency()}"
+                binding.transactionPrice.text = "- ${Math.abs(transaction.amount).toCurrency()}"
                 binding.transactionImg.setImageResource(R.drawable.withdraw)
             }
             TransactionType.DEPOSIT -> {
-                binding.transactionPrice.text = "+ R$ ${transaction.amount.toCurrency()}"
+                binding.transactionPrice.text = "+ ${transaction.amount.toCurrency()}"
                 binding.transactionImg.setImageResource(R.drawable.deposit)
             }
         }
