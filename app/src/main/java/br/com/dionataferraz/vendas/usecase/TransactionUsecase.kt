@@ -13,11 +13,11 @@ class TransactionUsecase {
 
     suspend fun saveTransaction(transaction: Transaction) {
         if (transaction.type == TransactionType.WITHDRAW) {
-            val price = transaction.amount * -1
+            val amount = transaction.amount * -1
             Log.e("withdraw price ====>", repository.findBalance().toString())
             repository.saveTransaction(Transaction(
                 transaction.date,
-                price,
+                amount,
                 transaction.type
             ))
             return

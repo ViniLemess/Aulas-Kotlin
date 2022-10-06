@@ -14,13 +14,16 @@ class TransactionRegistryViewModel: ViewModel() {
         TransactionUsecase()
     }
     private val transaction: MutableLiveData<Transaction> = MutableLiveData()
-    private val error: MutableLiveData<Boolean> = MutableLiveData()
+    private val state: MutableLiveData<TransactionState> = MutableLiveData()
     val listTransaction: LiveData<Transaction> = transaction
-    val isError: LiveData<Boolean> = error
+    val viewState: LiveData<TransactionState> = state
 
     fun saveTransaction(isDeposit: Boolean, amount: String) {
         viewModelScope.launch {
-            if (amount.isBlank()) return@launch
+            if (amount.isBlank()) {
+                state.value = TransactionState.EmptyTransaction
+                return@launch
+            }
             val newTransaction = Transaction(
                 Date().toString(),
                 amount.trim().toDouble(),
@@ -33,15 +36,21 @@ class TransactionRegistryViewModel: ViewModel() {
             Log.i("objeto ====>", newTransaction.toString())
             if (newTransaction.type == TransactionType.DEPOSIT) {
                 usecase.saveTransaction(newTransaction)
-                error.value = false
+                state.value = TransactionState.ValidTransaction
             } else if (validateTransaction(usecase.findBalance(), newTransaction.amount)) {
                 usecase.saveTransaction(newTransaction)
-                error.value = false
-            } else error.value = true
+                state.value = TransactionState.ValidTransaction
+            } else state.value = TransactionState.InsufficientBalance
         }
     }
 
     private fun validateTransaction(currentBalance: Double, amount:Double): Boolean {
         return amount <= currentBalance
     }
+}
+
+sealed class TransactionState() {
+    object EmptyTransaction: TransactionState()
+    object InsufficientBalance: TransactionState()
+    object ValidTransaction: TransactionState()
 }

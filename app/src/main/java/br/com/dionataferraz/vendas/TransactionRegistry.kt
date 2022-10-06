@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import br.com.dionataferraz.vendas.databinding.ActivityTransactionRegistryBinding
 import br.com.dionataferraz.vendas.viewmodel.TransactionRegistryViewModel
+import br.com.dionataferraz.vendas.viewmodel.TransactionState
 
 class TransactionRegistry : AppCompatActivity() {
 
@@ -25,11 +26,11 @@ class TransactionRegistry : AppCompatActivity() {
 
         }
 
-        viewModel.isError.observe(this) {
-            if (it) {
-                showToast(getString(R.string.insufficient_balance_msg))
-            } else {
-                showToast(getString(R.string.successfully_registered_transaction_msg))
+        viewModel.viewState.observe(this) { state ->
+            when(state) {
+                TransactionState.ValidTransaction -> showToast(getString(R.string.successfully_registered_transaction_msg))
+                TransactionState.InsufficientBalance -> showToast(getString(R.string.insufficient_balance_msg))
+                TransactionState.EmptyTransaction -> showToast(getString(R.string.empty_transaction_msg))
             }
         }
 
