@@ -1,13 +1,11 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.viewmodel
 
-import android.text.format.DateFormat
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.databinding.ItemListBinding
-import java.text.SimpleDateFormat
-import java.util.*
+import br.com.dionataferraz.vendas.toCurrency
 
 class TransactionAdapter(private val listener: Listener) :
     RecyclerView.Adapter<TransactionViewHolder>() {
@@ -36,16 +34,6 @@ class TransactionAdapter(private val listener: Listener) :
         notifyItemRangeRemoved(0, listItem.size)
         listItem.addAll(list)
     }
-
-    fun addList(list: List<Transaction>) {
-        listItem.addAll(list)
-        notifyItemRangeInserted(0, listItem.size)
-    }
-    fun updateItem(transaction: Transaction, position: Int) {
-        listItem[position] = transaction
-        notifyItemChanged(position)
-    }
-
 }
 
 class TransactionViewHolder(
@@ -54,19 +42,22 @@ class TransactionViewHolder(
 ): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(transaction: Transaction) {
-        binding.transactionName.text = transaction.description
-        binding.transactionPrice.text = "R$${transaction.price}"
-        Log.i("====> DATE",transaction.date)
+        binding.transactionName.text = transaction.type.action
         binding.transactionDate.text = transaction.date
 
         when (transaction.type) {
-            TransactionType.MARKET -> binding.transactionImg.setImageResource(R.drawable.icons_market)
-            TransactionType.GAS_STATION -> binding.transactionImg.setImageResource(R.drawable.icons_gas)
-            TransactionType.PUB -> binding.transactionImg.setImageResource(R.drawable.icons_pub)
+            TransactionType.WITHDRAW -> {
+                binding.transactionPrice.text = "- ${Math.abs(transaction.amount).toCurrency()}"
+                binding.transactionImg.setImageResource(R.drawable.withdraw)
+            }
+            TransactionType.DEPOSIT -> {
+                binding.transactionPrice.text = "+ ${transaction.amount.toCurrency()}"
+                binding.transactionImg.setImageResource(R.drawable.deposit)
+            }
         }
 
         binding.root.setOnClickListener {
-            listener.onItemClick(transaction.description)
+            listener.onItemClick(transaction.amount.toString())
         }
     }
 }
