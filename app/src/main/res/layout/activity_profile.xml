@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="16dp"
-        tools:context=".ProfileActivity">
+        tools:context=".activities.ProfileActivity">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_name"
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/ti_age"
+            app:layout_constraintBottom_toTopOf="@+id/bt_save"
             app:layout_constraintTop_toBottomOf="@+id/ti_email">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -61,58 +61,15 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/ti_age"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/rg"
-            app:layout_constraintTop_toBottomOf="@+id/ti_password">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/age"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <RadioGroup
-            android:id="@+id/rg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ti_age">
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/man" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/woman" />
-
-            <com.google.android.material.radiobutton.MaterialRadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/other" />
-
-        </RadioGroup>
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/bt_save"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rg" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ti_password" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

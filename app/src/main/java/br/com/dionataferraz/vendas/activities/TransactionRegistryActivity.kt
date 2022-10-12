@@ -1,13 +1,15 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import br.com.dionataferraz.vendas.R
 import br.com.dionataferraz.vendas.databinding.ActivityTransactionRegistryBinding
 import br.com.dionataferraz.vendas.viewmodel.TransactionRegistryViewModel
 import br.com.dionataferraz.vendas.viewmodel.TransactionState
+import br.com.dionataferraz.vendas.viewmodel.TransactionType
 
-class TransactionRegistry : AppCompatActivity() {
+class TransactionRegistryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTransactionRegistryBinding
     private lateinit var viewModel: TransactionRegistryViewModel
@@ -20,16 +22,16 @@ class TransactionRegistry : AppCompatActivity() {
 
         binding.submitButton.setOnClickListener {
             viewModel.saveTransaction(
-                binding.rdDeposit.isChecked,
-                binding.etAmount.text.toString()
+                getCheckedType(),
+                binding.etAmount.text.toString(),
+                binding.etDescription.text.toString()
             )
-
         }
 
         viewModel.viewState.observe(this) { state ->
             when(state) {
                 TransactionState.ValidTransaction -> showToast(getString(R.string.successfully_registered_transaction_msg))
-                TransactionState.InsufficientBalance -> showToast(getString(R.string.insufficient_balance_msg))
+                TransactionState.UnknownType -> showToast(getString(R.string.unknown_type_msg))
                 TransactionState.EmptyTransaction -> showToast(getString(R.string.empty_transaction_msg))
             }
         }
@@ -45,5 +47,14 @@ class TransactionRegistry : AppCompatActivity() {
             msg,
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    private fun getCheckedType(): TransactionType {
+        when (binding.rdGroup.checkedRadioButtonId) {
+            0 -> return TransactionType.GAS_STATION
+            1 -> return TransactionType.MARKET
+            2 -> return TransactionType.PUB
+        }
+        return TransactionType.UNKNOWN
     }
 }

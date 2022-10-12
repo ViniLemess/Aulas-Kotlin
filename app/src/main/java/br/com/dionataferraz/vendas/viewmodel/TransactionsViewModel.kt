@@ -24,7 +24,7 @@ class TransactionsViewModel: ViewModel() {
             } else {
                 transactions.value = list
                 list.forEach {
-                    Log.e("TransactionList ===>", it.date)
+                    Log.e("TransactionList ===>", it.description)
                 }
             }
         }
@@ -32,12 +32,11 @@ class TransactionsViewModel: ViewModel() {
 }
 
 data class Transaction(
-    val date: String,
+    val description: String,
     val amount: Double,
     val type: TransactionType
 )
 
-enum class TransactionType(val action:String) {
-    WITHDRAW("Withdraw"),
-    DEPOSIT("Deposit")
+enum class TransactionType() {
+    MARKET, PUB, GAS_STATION, UNKNOWN
 }

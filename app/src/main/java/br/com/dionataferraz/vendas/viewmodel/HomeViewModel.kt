@@ -14,11 +14,11 @@ class HomeViewModel: ViewModel(){
     }
 
     private val balance: MutableLiveData<String> = MutableLiveData()
-    val showBalance: LiveData<String> = balance
+    val showBill: LiveData<String> = balance
 
-    fun getBalance() {
+    fun getTotalBill() {
         viewModelScope.launch {
-            balance.value = transactionUsecase.findBalance().toCurrency()
+            balance.value = transactionUsecase.getTotalBill().toCurrency()
         }
     }
 }

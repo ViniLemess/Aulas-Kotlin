@@ -1,6 +1,8 @@
 package br.com.dionataferraz.vendas.repository
 
-import br.com.dionataferraz.vendas.data.local.TransactionDataSource
+import br.com.dionataferraz.vendas.data.remote.TransactionDataSource
+import br.com.dionataferraz.vendas.toModel
+import br.com.dionataferraz.vendas.toResponse
 import br.com.dionataferraz.vendas.viewmodel.Transaction
 
 class TransactionRepository {
@@ -9,14 +11,10 @@ class TransactionRepository {
     }
 
     suspend fun saveTransaction(transaction: Transaction) {
-        dataSource.saveTransaction(transaction)
+        dataSource.registerTransaction(transaction.toResponse())
     }
 
     suspend fun findTransactions(): List<Transaction> {
-        return dataSource.findTransactions()
-    }
-
-    suspend fun findBalance(): Double {
-        return dataSource.findBalance()
+        return dataSource.findTransactions().map { it.toModel() }
     }
 }

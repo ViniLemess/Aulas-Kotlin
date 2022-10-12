@@ -17,19 +17,19 @@
         android:theme="@style/Theme.Vendas"
         tools:targetApi="31">
         <activity
-            android:name=".TransactionRegistry"
+            android:name=".activities.TransactionRegistryActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".TransactionsActivity"
+            android:name=".activities.TransactionsActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
@@ -39,7 +39,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true" />
     </application>
 

@@ -1,9 +1,7 @@
 package br.com.dionataferraz.vendas.usecase
 
-import android.util.Log
 import br.com.dionataferraz.vendas.repository.TransactionRepository
 import br.com.dionataferraz.vendas.viewmodel.Transaction
-import br.com.dionataferraz.vendas.viewmodel.TransactionType
 
 
 class TransactionUsecase {
@@ -12,16 +10,6 @@ class TransactionUsecase {
     }
 
     suspend fun saveTransaction(transaction: Transaction) {
-        if (transaction.type == TransactionType.WITHDRAW) {
-            val amount = transaction.amount * -1
-            Log.e("withdraw price ====>", repository.findBalance().toString())
-            repository.saveTransaction(Transaction(
-                transaction.date,
-                amount,
-                transaction.type
-            ))
-            return
-        }
         repository.saveTransaction(transaction)
     }
 
@@ -29,7 +17,7 @@ class TransactionUsecase {
         return repository.findTransactions()
     }
 
-    suspend fun findBalance(): Double {
-        return repository.findBalance()
+    suspend fun getTotalBill(): Double {
+        return repository.findTransactions().sumOf { it.amount }
     }
 }

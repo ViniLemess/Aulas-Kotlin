@@ -20,6 +20,17 @@ class LoginDataSource {
             }
         }
     }
+
+    suspend fun registerUser(userResponse: UserResponse) {
+        withContext(Dispatchers.IO) {
+            try {
+                service.registerUser(userResponse)
+                Result.Success(userResponse)
+            } catch (exception:Exception) {
+                Result.Error(ErrorModel)
+            }
+        }
+    }
 }
 
 object ErrorModel

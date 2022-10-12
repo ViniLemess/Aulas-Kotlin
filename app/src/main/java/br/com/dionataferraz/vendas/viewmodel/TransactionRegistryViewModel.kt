@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.dionataferraz.vendas.usecase.TransactionUsecase
 import kotlinx.coroutines.launch
-import java.util.*
 
 class TransactionRegistryViewModel: ViewModel() {
     private val usecase by lazy {
@@ -18,39 +17,33 @@ class TransactionRegistryViewModel: ViewModel() {
     val listTransaction: LiveData<Transaction> = transaction
     val viewState: LiveData<TransactionState> = state
 
-    fun saveTransaction(isDeposit: Boolean, amount: String) {
+    fun saveTransaction(type: TransactionType, amount: String, description:String) {
         viewModelScope.launch {
             if (amount.isBlank()) {
                 state.value = TransactionState.EmptyTransaction
                 return@launch
+            } else if (validateTransaction(type)) {
+                state.value = TransactionState.UnknownType
+                return@launch
             }
             val newTransaction = Transaction(
-                Date().toString(),
+                description,
                 amount.trim().toDouble(),
-                if (isDeposit) {
-                    TransactionType.DEPOSIT
-                } else {
-                    TransactionType.WITHDRAW
-                }
+                type
             )
             Log.i("objeto ====>", newTransaction.toString())
-            if (newTransaction.type == TransactionType.DEPOSIT) {
-                usecase.saveTransaction(newTransaction)
-                state.value = TransactionState.ValidTransaction
-            } else if (validateTransaction(usecase.findBalance(), newTransaction.amount)) {
-                usecase.saveTransaction(newTransaction)
-                state.value = TransactionState.ValidTransaction
-            } else state.value = TransactionState.InsufficientBalance
+            usecase.saveTransaction(newTransaction)
+            state.value = TransactionState.ValidTransaction
         }
     }
 
-    private fun validateTransaction(currentBalance: Double, amount:Double): Boolean {
-        return amount <= currentBalance
+    private fun validateTransaction(type: TransactionType): Boolean {
+        return type == TransactionType.UNKNOWN
     }
 }
 
 sealed class TransactionState() {
     object EmptyTransaction: TransactionState()
-    object InsufficientBalance: TransactionState()
+    object UnknownType: TransactionState()
     object ValidTransaction: TransactionState()
 }

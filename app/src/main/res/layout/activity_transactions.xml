@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        tools:context=".TransactionsActivity">
+        tools:context=".activities.TransactionsActivity">
 
         <TextView
             android:id="@+id/transactions_str"
