@@ -25,13 +25,13 @@ class SplashActivity : AppCompatActivity() {
         viewModel.shouldShowHome.observe(this) {
             if (it) {
                 Handler().postDelayed({
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                     finish()
                 }, 3000)
             } else {
                 Handler().postDelayed({
-                    val intent = Intent(this, LoginActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent)
                     finish()
                 }, 3000)

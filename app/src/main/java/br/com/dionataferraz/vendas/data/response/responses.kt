@@ -7,5 +7,5 @@ data class UserResponse(
 
 data class TransactionResponse(
     val description:String,
-    val amount:Double,
-    val type:String)
+    val value:Double,
+    val transactionType:String)

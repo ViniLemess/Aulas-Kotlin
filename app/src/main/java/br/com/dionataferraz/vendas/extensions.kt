@@ -20,16 +20,16 @@ fun Double.toCurrency(): String {
 fun TransactionResponse.toModel(): Transaction {
     return Transaction(
         description = description,
-        amount = amount,
-        type = TransactionType.valueOf(type)
+        amount = value,
+        type = TransactionType.valueOf(transactionType)
     )
 }
 
 fun Transaction.toResponse(): TransactionResponse {
     return TransactionResponse(
         description = description,
-        amount = amount,
-        type = type.toString()
+        value = amount,
+        transactionType = type.toString()
     )
 }
 

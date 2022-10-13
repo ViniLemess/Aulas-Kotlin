@@ -24,6 +24,7 @@ class ProfileActivity : AppCompatActivity() {
                 binding.etEmail.text.toString(),
                 binding.etPassword.text.toString()
             )
+            finish()
         }
     }
 }

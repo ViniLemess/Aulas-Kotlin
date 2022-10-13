@@ -50,10 +50,12 @@ class TransactionRegistryActivity : AppCompatActivity() {
     }
 
     private fun getCheckedType(): TransactionType {
-        when (binding.rdGroup.checkedRadioButtonId) {
-            0 -> return TransactionType.GAS_STATION
-            1 -> return TransactionType.MARKET
-            2 -> return TransactionType.PUB
+        if (binding.rdGasStation.isChecked) {
+            return TransactionType.GAS_STATION
+        } else if (binding.rdMarket.isChecked) {
+            return TransactionType.MARKET
+        } else if (binding.rdPub.isChecked) {
+            return TransactionType.PUB
         }
         return TransactionType.UNKNOWN
     }
