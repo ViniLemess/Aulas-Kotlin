@@ -42,18 +42,13 @@ class TransactionViewHolder(
 ): RecyclerView.ViewHolder(binding.root) {
 
     fun bind(transaction: Transaction) {
-        binding.transactionName.text = transaction.type.action
-        binding.transactionDate.text = transaction.date
+        binding.transactionDescription.text = transaction.description
+        "- ${transaction.amount.toCurrency()}".also { binding.transactionPrice.text = it }
 
         when (transaction.type) {
-            TransactionType.WITHDRAW -> {
-                binding.transactionPrice.text = "- ${Math.abs(transaction.amount).toCurrency()}"
-                binding.transactionImg.setImageResource(R.drawable.withdraw)
-            }
-            TransactionType.DEPOSIT -> {
-                binding.transactionPrice.text = "+ ${transaction.amount.toCurrency()}"
-                binding.transactionImg.setImageResource(R.drawable.deposit)
-            }
+            TransactionType.GAS_STATION -> binding.transactionImg.setImageResource(R.drawable.gas_station)
+            TransactionType.PUB -> binding.transactionImg.setImageResource(R.drawable.pub)
+            TransactionType.MARKET -> binding.transactionImg.setImageResource(R.drawable.market)
         }
 
         binding.root.setOnClickListener {

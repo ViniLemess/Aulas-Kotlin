@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TransactionRegistry">
+        tools:context=".activities.TransactionRegistryActivity">
 
         <Toolbar
             android:layout_width="match_parent"
@@ -22,6 +22,29 @@
         </Toolbar>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ti_description"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="8dp"
+            android:hint="@string/description"
+            app:layout_constraintBottom_toTopOf="@id/ti_amount"
+            app:layout_constraintStart_toStartOf="@id/submit_button"
+            app:layout_constraintEnd_toEndOf="@id/submit_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLength="24"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ti_amount"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -31,7 +54,7 @@
             app:layout_constraintBottom_toTopOf="@id/rd_group"
             app:layout_constraintStart_toStartOf="@id/submit_button"
             app:layout_constraintEnd_toEndOf="@id/submit_button"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ti_description"
             app:layout_constraintVertical_chainStyle="packed">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -56,16 +79,22 @@
             app:layout_constraintStart_toStartOf="@+id/ti_amount">
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/rd_deposit"
+                android:id="@+id/rd_gas_station"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/deposit"/>
+                android:hint="@string/gas_station"/>
 
             <com.google.android.material.radiobutton.MaterialRadioButton
-                android:id="@+id/rd_withdraw"
+                android:id="@+id/rd_market"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/withdraw"/>
+                android:hint="@string/market"/>
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/rd_pub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/pub"/>
         </RadioGroup>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submit_button"

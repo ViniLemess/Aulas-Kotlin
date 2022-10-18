@@ -1,17 +1,17 @@
-package br.com.dionataferraz.vendas.login
+package br.com.dionataferraz.vendas.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.dionataferraz.vendas.usecase.GetLoginUsecase
+import br.com.dionataferraz.vendas.usecase.LoginUsecase
 import kotlinx.coroutines.launch
 
 class LoginViewModel : ViewModel() {
 
-    private val getLoginUsecase by lazy {
-        GetLoginUsecase()
+    private val loginUsecase by lazy {
+        LoginUsecase()
     }
 
     private val error: MutableLiveData<Boolean> = MutableLiveData(false)
@@ -22,7 +22,7 @@ class LoginViewModel : ViewModel() {
     fun login(email: String?, password: String?) {
         viewModelScope.launch {
             if (email != null && password != null) {
-                val user = getLoginUsecase.login(email = email, password = password)
+                val user = loginUsecase.login(email = email, password = password)
                 Log.d("Login: ",user.get().toString())
                 if (user.get() != null) {
                     home.value = true
@@ -32,6 +32,12 @@ class LoginViewModel : ViewModel() {
             } else {
                 error.value = true
             }
+        }
+    }
+
+    fun existUsers() {
+        viewModelScope.launch {
+            home.value = loginUsecase.getLocalUsers().isEmpty()
         }
     }
 }

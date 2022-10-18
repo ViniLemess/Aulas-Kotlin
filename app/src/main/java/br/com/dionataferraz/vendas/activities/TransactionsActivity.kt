@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -33,7 +33,7 @@ class TransactionsActivity : AppCompatActivity(), TransactionAdapter.Listener {
         }
 
         binding.plusButton.setOnClickListener {
-            val intent  = Intent(this, TransactionRegistry::class.java)
+            val intent  = Intent(this, TransactionRegistryActivity::class.java)
             startActivity(intent)
         }
     }

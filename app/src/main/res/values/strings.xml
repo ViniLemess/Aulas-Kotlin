@@ -19,10 +19,13 @@
     <string name="transactions">TRANSACTIONS</string>
     <string name="transactions_str">Transactions</string>
     <string name="submit">Submit</string>
-    <string name="deposit">Deposit</string>
-    <string name="withdraw">Withdraw</string>
+    <string name="gas_station">Gas Station</string>
+    <string name="pub">Pub</string>
+    <string name="market">Market</string>
+    <string name="description">Description</string>
     <string name="amount">Amount</string>
-    <string name="insufficient_balance_msg">Insufficient Balance</string>
+    <string name="unknown_type_msg">Type must be selected!</string>
     <string name="successfully_registered_transaction_msg">Successfully registered transaction</string>
     <string name="empty_transaction_msg">Transaction cannot be empty!</string>
+    <string name="register_now">register now</string>
 </resources>

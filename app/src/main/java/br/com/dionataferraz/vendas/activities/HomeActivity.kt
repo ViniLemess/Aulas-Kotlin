@@ -1,4 +1,4 @@
-package br.com.dionataferraz.vendas
+package br.com.dionataferraz.vendas.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -19,8 +19,8 @@ class HomeActivity : AppCompatActivity() {
             setContentView(root)
         }
 
-        viewModel.showBalance.observe(this) {
-            binding.tvAccountBalance.text = it.toString()
+        viewModel.showBill.observe(this) {
+            binding.tvCreditCard.text = it.toString()
         }
 
         binding.transactionButton.setOnClickListener {
@@ -29,13 +29,13 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.transactionRgButton.setOnClickListener {
-            val intent = Intent(this, TransactionRegistry::class.java)
+            val intent = Intent(this, TransactionRegistryActivity::class.java)
             startActivity(intent)
         }
     }
 
     override fun onStart() {
         super.onStart()
-        viewModel.getBalance()
+        viewModel.getTotalBill()
     }
 }
